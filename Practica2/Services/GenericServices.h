@@ -62,17 +62,20 @@ void GenericService<T>::buscar(const vector<T>& registro, const string& id) {
     }
     cout << "No encontrado\n";
 }
+//Validacion Generica del ID
 template <typename T>
 bool GenericService<T>::validarId(const vector<T>& registro, const string& id){
-   if(id.length() <=3 || id.substr(0,3) != "COD"){
+   if(id.length() <=3 || id.substr(0,3) != "COD"){ // comprobar que tenga mas de 3 caracteres y sea COD
     cout << "El ID debe comenzar con 'COD' y tener mas de 3 caracteres"<<endl;   
     return false;
     }
-for (const T& indice : registro){
-        if (indice.id == id)
+    for (const T& indice : registro){
+        if (indice.id == id) //verificar que ningun ID no se repitan
         {
             cout << "El ID ya existe, por favor ingrese uno diferente"<< endl;
             return false;
         }
-}}
+    }
+return true;
+}
 #endif
